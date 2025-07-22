@@ -1,4 +1,7 @@
 package com.mitocode.repository.interfaces;
 
-public interface IStudentRepo {
+import com.mitocode.model.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IStudentRepo extends JpaRepository<Student, Integer> {
 }
