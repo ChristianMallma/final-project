@@ -28,4 +28,14 @@ public class StudentController {
     public Student save(@RequestBody Student student) throws Exception {
         return studentService.save(student);
     }
+
+    @PutMapping("/{id}")
+    public Student save(@PathVariable("id") Integer id, @RequestBody Student student) throws Exception {
+        return studentService.update(id, student);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Integer id) throws Exception {
+        studentService.delete(id);
+    }
 }
