@@ -31,6 +31,6 @@ public class Student {
     private Integer age;
 
     @Column(nullable = false)
-    private boolean enabled;
+    private boolean enabled = true;
 
 }
