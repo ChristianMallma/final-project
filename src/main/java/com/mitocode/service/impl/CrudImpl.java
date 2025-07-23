@@ -1,5 +1,6 @@
 package com.mitocode.service.impl;
 
+import com.mitocode.exception.ModelNotFoundException;
 import com.mitocode.repository.interfaces.IGenericRepo;
 import com.mitocode.service.interfaces.ICrud;
 
@@ -16,7 +17,7 @@ public abstract class CrudImpl<T, ID> implements ICrud<T, ID> {
 
     @Override
     public T update(ID id, T t) throws Exception {
-        // Missing a id validation
+        getRepo().findById(id).orElseThrow(() -> new ModelNotFoundException("Id not found: "+ id));
         return getRepo().save(t);
     }
 
@@ -27,11 +28,12 @@ public abstract class CrudImpl<T, ID> implements ICrud<T, ID> {
 
     @Override
     public T findById(ID id) throws Exception {
-        return getRepo().findById(id).orElse(null);
+        return getRepo().findById(id).orElseThrow(() -> new ModelNotFoundException("Id not found: "+ id));
     }
 
     @Override
     public void delete(ID id) throws Exception {
+        getRepo().findById(id).orElseThrow(() -> new ModelNotFoundException("Id not found: "+ id));
         getRepo().deleteById(id);
     }
 }
