@@ -26,5 +26,5 @@ public class StudentDto {
     @Min(10)
     @Max(99)
     private Integer age;
-    private boolean enabled;
+    private Boolean enabled;
 }
