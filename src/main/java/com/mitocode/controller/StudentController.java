@@ -52,6 +52,15 @@ public class StudentController {
         return ResponseEntity.noContent().build();
     }
 
+    // Questions
+    @GetMapping("/students-by-age-desc")
+    public ResponseEntity<List<StudentDto>> getAllStudentsOrderedByAgeDesc() throws Exception {
+        List<StudentDto> list = studentService.getAllStudentsOrderedByAgeDesc().stream()
+                .map(this::mapToDto)
+                .toList();
+        return ResponseEntity.ok().body(list);
+    }
+
     // Auxiliary mapping functions
     private StudentDto mapToDto(Student student) {
         return modelMapper.map(student, StudentDto.class);
