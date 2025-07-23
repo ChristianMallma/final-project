@@ -3,6 +3,8 @@ package com.mitocode.controller;
 import com.mitocode.model.Student;
 import com.mitocode.service.interfaces.IStudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,27 +17,32 @@ public class StudentController {
     private final IStudentService studentService;
 
     @GetMapping
-    public List<Student> findAll() throws Exception {
-        return studentService.findAll();
+    public ResponseEntity<List<Student>> findAll() throws Exception {
+        List<Student> list = studentService.findAll();
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/{id}")
-    public Student findById(@PathVariable("id") Integer id) throws Exception {
-        return studentService.findById(id);
+    public ResponseEntity<Student> findById(@PathVariable("id") Integer id) throws Exception {
+        Student student = studentService.findById(id);
+        return ResponseEntity.ok().body(student);
     }
 
     @PostMapping
-    public Student save(@RequestBody Student student) throws Exception {
-        return studentService.save(student);
+    public ResponseEntity<Student> save(@RequestBody Student student) throws Exception {
+        Student newStudent = studentService.save(student);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newStudent);
     }
 
     @PutMapping("/{id}")
-    public Student save(@PathVariable("id") Integer id, @RequestBody Student student) throws Exception {
-        return studentService.update(id, student);
+    public ResponseEntity<Student> save(@PathVariable("id") Integer id, @RequestBody Student student) throws Exception {
+        Student updatedStudent = studentService.update(id, student);
+        return ResponseEntity.ok().body(updatedStudent);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) throws Exception {
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws Exception {
         studentService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
