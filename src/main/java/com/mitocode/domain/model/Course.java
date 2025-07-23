@@ -25,5 +25,5 @@ public class Course {
     private String code;
 
     @Column(nullable = false)
-    private boolean enabled;
+    private boolean enabled = true;
 }
