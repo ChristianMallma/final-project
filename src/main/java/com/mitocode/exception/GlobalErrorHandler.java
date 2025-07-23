@@ -11,11 +11,20 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class GlobalErrorHandler {
 
-    @ExceptionHandler(ModelNotFoundException.class)
-    public ResponseEntity<CustomErrorResponse> handleModelNotFoundException(ModelNotFoundException ex, WebRequest request) {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<CustomErrorResponse> handleDefaultException(Exception ex, WebRequest request) {
         CustomErrorResponse customErrorResponse = new CustomErrorResponse(LocalDateTime.now(),
                                                                           ex.getMessage(),
                                                                           request.getDescription(false));
+
+        return new ResponseEntity<>(customErrorResponse, HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @ExceptionHandler(ModelNotFoundException.class)
+    public ResponseEntity<CustomErrorResponse> handleModelNotFoundException(ModelNotFoundException ex, WebRequest request) {
+        CustomErrorResponse customErrorResponse = new CustomErrorResponse(LocalDateTime.now(),
+                ex.getMessage(),
+                request.getDescription(false));
 
         return new ResponseEntity<>(customErrorResponse, HttpStatus.NOT_FOUND);
     }
