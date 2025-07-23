@@ -1,7 +1,5 @@
 package com.mitocode.service.interfaces;
 
-import com.mitocode.model.Student;
-
 import java.util.List;
 
 public interface ICrud<T, ID> {

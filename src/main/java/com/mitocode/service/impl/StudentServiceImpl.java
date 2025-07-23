@@ -3,7 +3,7 @@ package com.mitocode.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import com.mitocode.model.Student;
+import com.mitocode.domain.model.Student;
 import com.mitocode.repository.interfaces.IGenericRepo;
 import com.mitocode.repository.interfaces.IStudentRepo;
 import com.mitocode.service.interfaces.IStudentService;

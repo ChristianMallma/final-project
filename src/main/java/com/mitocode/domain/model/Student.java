@@ -1,4 +1,4 @@
-package com.mitocode.model;
+package com.mitocode.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,19 +11,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Course {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Integer idCourse;
+    private Integer idStudent;
 
     @Column(nullable = false, length = 60)
-    private String name;
+    private String firstName;
 
-    @Column(nullable = false, length = 20, unique = true)
-    private String code;
+    @Column(nullable = false, length = 60)
+    private String lastName;
+
+    @Column(nullable = false, length = 10, unique = true)
+    private String dni;
 
     @Column(nullable = false)
-    private boolean enabled;
+    private Integer age;
+
+    @Column(nullable = false)
+    private boolean enabled = true;
+
 }

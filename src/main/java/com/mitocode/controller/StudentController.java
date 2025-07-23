@@ -1,6 +1,6 @@
 package com.mitocode.controller;
 
-import com.mitocode.model.Student;
+import com.mitocode.domain.model.Student;
 import com.mitocode.service.interfaces.IStudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

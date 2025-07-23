@@ -1,4 +1,4 @@
-package com.mitocode.model;
+package com.mitocode.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
