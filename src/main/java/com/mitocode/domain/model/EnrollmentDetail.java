@@ -28,7 +28,4 @@ public class EnrollmentDetail {
 
     @Column(nullable = false, length = 60)
     private String classroom;
-
-    @Column(nullable = false)
-    private boolean enabled;
 }
