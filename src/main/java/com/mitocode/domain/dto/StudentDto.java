@@ -1,5 +1,8 @@
 package com.mitocode.domain.dto;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +13,18 @@ import lombok.NoArgsConstructor;
 public class StudentDto {
 
     private Integer idStudent;
+
+    @Size(min = 2, max = 60)
     private String firstName;
+
+    @Size(min = 2, max = 60)
     private String lastName;
+
+    @Size(min = 6, max = 10)
     private String dni;
+
+    @Min(10)
+    @Max(99)
     private Integer age;
     private boolean enabled;
 }

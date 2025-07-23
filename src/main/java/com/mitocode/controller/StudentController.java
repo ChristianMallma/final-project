@@ -3,6 +3,7 @@ package com.mitocode.controller;
 import com.mitocode.domain.dto.StudentDto;
 import com.mitocode.domain.model.Student;
 import com.mitocode.service.interfaces.IStudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -34,13 +35,13 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentDto> save(@RequestBody StudentDto studentDto) throws Exception {
+    public ResponseEntity<StudentDto> save(@Valid @RequestBody StudentDto studentDto) throws Exception {
         Student newStudent = studentService.save(mapToEntity(studentDto));
         return ResponseEntity.status(HttpStatus.CREATED).body(mapToDto(newStudent));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StudentDto> save(@PathVariable("id") Integer id, @RequestBody StudentDto studentDto) throws Exception {
+    public ResponseEntity<StudentDto> save(@Valid @PathVariable("id") Integer id, @RequestBody StudentDto studentDto) throws Exception {
         Student updatedStudent = studentService.update(id, mapToEntity(studentDto));
         return ResponseEntity.ok().body(mapToDto(updatedStudent));
     }
