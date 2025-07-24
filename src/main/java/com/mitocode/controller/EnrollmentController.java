@@ -1,6 +1,7 @@
 package com.mitocode.controller;
 
 import com.mitocode.domain.dto.EnrollmentDto;
+import com.mitocode.domain.dto.StudentDto;
 import com.mitocode.domain.model.Enrollment;
 import com.mitocode.service.interfaces.IEnrollmentService;
 import jakarta.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/enrollments")
@@ -50,6 +52,13 @@ public class EnrollmentController {
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws Exception {
         enrollmentService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // Questions
+    @GetMapping("/students-enrolled-by-course")
+    public ResponseEntity<Map<String, List<String>>> studentsEnrolledByCourse() throws Exception {
+        Map<String, List<String>> list = enrollmentService.studentsEnrolledByCourse();
+        return ResponseEntity.ok().body(list);
     }
 
     // Auxiliary mapping functions
